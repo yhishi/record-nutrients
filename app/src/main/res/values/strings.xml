@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">record-nutrients</string>
+    <string name="loading_projects">Loading projects …</string>
+
+    <string-array name="protein_array">
+        <item>なし</item>
+        <item>サラダチキン 24g</item>
+        <item>プロテイン 23g</item>
+        <item>ステーキ 40g</item>
+        <item>さんま缶 18g</item>
+        <item>焼き鳥冷凍 29g</item>
+    </string-array>
+    <string-array name="carbohydrate_array">
+        <item>なし</item>
+        <item>ご飯 120g</item>
+        <item>ご飯大 140g</item>
+        <item>おにぎり 60g</item>
+    </string-array>
+</resources>
