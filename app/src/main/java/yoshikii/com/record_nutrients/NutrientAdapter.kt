@@ -1,11 +1,13 @@
 package yoshikii.com.record_nutrients
 
+import android.content.Context
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import yoshikii.com.record_nutrients.databinding.ViewItemListBinding
 
-class NutrientAdapter : ListAdapter<Any, BindingViewHolder<*>>(
+class NutrientAdapter(private var context: Context) : ListAdapter<Any, BindingViewHolder<*>>(
     object : DiffUtil.ItemCallback<Any>() {
         override fun areItemsTheSame(oldItem: Any, newItem: Any) = oldItem == newItem
         override fun areContentsTheSame(oldItem: Any, newItem: Any) = oldItem == newItem
@@ -58,6 +60,15 @@ class NutrientAdapter : ListAdapter<Any, BindingViewHolder<*>>(
     private inner class ItemViewHolder(parent: ViewGroup) :
         BindingViewHolder<ViewItemListBinding>(parent, R.layout.view_item_list) {
         fun bind() {
+            val a = arrayListOf("サラダ 20g", "ステーキ 40g")
+            val adapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_item,
+                a
+            )
+            binding.morningProtein.adapter = adapter
+// dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+// spinner2.setAdapter(dataAdapter)
         }
     }
 

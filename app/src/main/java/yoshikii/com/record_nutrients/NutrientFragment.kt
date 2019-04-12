@@ -1,69 +1,91 @@
 package yoshikii.com.record_nutrients
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import io.realm.Realm
+import io.realm.RealmList
+import yoshikii.com.record_nutrients.data.NutrientViewModel
 import yoshikii.com.record_nutrients.databinding.FragmentNutrientBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NutrientFragment : Fragment() {
 
-    private var binding: FragmentNutrientBinding? = null
+//    private var binding: FragmentNutrientBinding? = null
     private var adapter: NutrientAdapter? = null
+    private val nutrientViewModel by lazy {
+        ViewModelProviders.of(this).get(NutrientViewModel::class.java)
+    }
 
-    //callbackに操作イベントを設定
-//    private val projectClickCallback = object : ProjectClickCallback {
-//        override fun onClick(project: Project) {
-//            if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) && activity is MainActivity) {
-//                //(activity as MainActivity).show(project)
-//            }
-//        }
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+        //viewModel.getRealm()
+
+        //initしたインスタンスをとってきて、トランザクションで書き込み
+        val realm = Realm.getDefaultInstance()
+        realm.executeTransaction { realm ->
+            realm.where(NutrientRealm::class.java).findAll().deleteAllFromRealm()
+        }
+
+        var bbb: RealmList<Nutrient> = RealmList()
+        bbb.add(
+            Nutrient(
+                item = "サラダチキン",
+                value = 25
+            )
+        )
+        bbb.add(
+            Nutrient(
+                item = "ステーキ",
+                value = 40
+            )
+        )
+
+        val ccc = NutrientRealm(
+            proteinSpinner = bbb
+        )
+        realm.executeTransaction { realm ->
+            realm.insertOrUpdate(ccc)
+        }
+
+        //全件取得
+        val all = realm.where(NutrientRealm::class.java).findAll()
+
+        // 取り出し方
+//        val a = all[0]?.id
+//        val b = all[0]!!.proteinSpinner[0]!!.item
+//        val c = all[0]!!.proteinSpinner[0]!!.value
+        all.forEach { it ->
+            it.proteinSpinner.forEach {
+                println(it.item)
+                println(it.value)
+            }
+        }
+
+        //val df = SimpleDateFormat("yyyy年MM月dd日 HH:mm")
+        val df = SimpleDateFormat("MM/dd")
+        val message = df.format(Date())
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
         //dataBinding用のレイアウトリソースをセット
         val binding: FragmentNutrientBinding =
-                DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
         binding.apply {
-            adapter = NutrientAdapter()
-            itemList.adapter = adapter
+            viewModel = nutrientViewModel
+            adapter = NutrientAdapter(requireContext())
             //isLoading = true
             return root
         }
-
-        //イベントのcallbackをadapterに伝達
-//        projectAdapter = ProjectAdapter(projectClickCallback)
-//
-//        //上記adapterをreclclerViewに適用
-//        requireNotNull(binding).projectList.adapter = projectAdapter
-//        //Loading開始
-//        requireNotNull(binding).isLoading = true
-//        //rootViewを取得
-//        return requireNotNull(binding).root
     }
-
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        val viewModel = ViewModelProviders.of(this).get(ProjectListViewModel::class.java)
-//        //監視を開始
-//        observeViewModel(viewModel)
-//    }
-//
-//    //observe開始
-//    private fun observeViewModel(viewModel: ProjectListViewModel) {
-//
-//        //データが更新されたらアップデートするように、LifecycleOwnerを紐付け、ライフサイクル内にオブザーバを追加
-//        //オブザーバーは、STARTED かRESUMED状態である場合にのみ、イベントを受信する
-//        viewModel.projectListObservable.observe(this, Observer { projects ->
-//            if (projects != null) {
-//                requireNotNull(binding).isLoading = false
-//                //projectAdapter!!.setProjectList(projects)
-//            }
-//        })
-//    }
 
     companion object {
         const val TAG_NUTRIENT_LIST_FRAGMENT = "NutrientListFragment"
