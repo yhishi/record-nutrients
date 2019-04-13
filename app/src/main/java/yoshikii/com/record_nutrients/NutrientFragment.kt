@@ -50,8 +50,23 @@ class NutrientFragment : Fragment() {
             )
         )
 
+        var ddd: RealmList<Nutrient> = RealmList()
+        ddd.add(
+            Nutrient(
+                item = "ご飯大盛り",
+                value = 140
+            )
+        )
+        ddd.add(
+            Nutrient(
+                item = "おにぎり",
+                value = 60
+            )
+        )
+
         val ccc = NutrientRealm(
-            proteinSpinner = bbb
+            proteinSpinner = bbb,
+            sugarSpinner = ddd
         )
         realm.executeTransaction { realm ->
             realm.insertOrUpdate(ccc)

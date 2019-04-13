@@ -61,20 +61,31 @@ class NutrientAdapter(
         BindingViewHolder<ViewItemListBinding>(parent, R.layout.view_item_list) {
         fun bind(data: TestData) {
 
-            // タンパク質用のスピナーリスト作成
+            // スピナーリスト作成
             val proteinSpinner = arrayListOf<String>()
+            val carbohydrateSpinner = arrayListOf<String>()
             data.spinnerItems.forEach { spinner ->
                 spinner.proteinSpinner.forEach {
-                    proteinSpinner.add("${it.item} ${it.value} g" )
+                    proteinSpinner.add("${it.item} ${it.value} g")
+                }
+                spinner.sugarSpinner.forEach {
+                    carbohydrateSpinner.add("${it.item} ${it.value} g")
                 }
             }
 
-            val adapter = ArrayAdapter(
+            val proteinAdapter = ArrayAdapter(
                 context,
                 android.R.layout.simple_spinner_item,
                 proteinSpinner
             )
-            binding.proteinAdapter = adapter
+
+            val carbohydrateAdapter = ArrayAdapter(
+                context,
+                android.R.layout.simple_spinner_item,
+                carbohydrateSpinner
+            )
+            binding.proteinAdapter = proteinAdapter
+            binding.carbohydrateAdapter = carbohydrateAdapter
         }
     }
 

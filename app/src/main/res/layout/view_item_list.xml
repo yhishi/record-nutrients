@@ -9,6 +9,11 @@
             name="proteinAdapter"
             type="android.widget.ArrayAdapter">
         </variable>
+
+        <variable
+            name="carbohydrateAdapter"
+            type="android.widget.ArrayAdapter">
+        </variable>
     </data>
 
     <HorizontalScrollView
@@ -40,6 +45,7 @@
                 android:id="@+id/morningCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/morningProtein"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
@@ -57,6 +63,7 @@
                 android:id="@+id/betweenFirstCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/betweenFirstProtein"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
@@ -74,6 +81,7 @@
                 android:id="@+id/lunchCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/lunchProtein"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
@@ -90,6 +98,7 @@
             <Spinner
                 android:id="@+id/betweenSecondCarbohydrate"
                 android:layout_width="0dp"
+                android:adapter="@{carbohydrateAdapter}"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/betweenSecondProtein"
                 app:layout_constraintTop_toTopOf="parent"
@@ -108,6 +117,7 @@
                 android:id="@+id/dinnerCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/dinnerProtein"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
