@@ -74,7 +74,7 @@ class NutrientAdapter(
                 android.R.layout.simple_spinner_item,
                 proteinSpinner
             )
-            binding.morningProtein.adapter = adapter
+            binding.proteinAdapter = adapter
         }
     }
 

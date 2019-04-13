@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="proteinAdapter"
+            type="android.widget.ArrayAdapter">
+        </variable>
+    </data>
+
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,11 +31,12 @@
                 android:id="@+id/morningProtein"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{proteinAdapter}"
+                android:entries="@array/protein_array"
                 app:layout_constraintStart_toEndOf="@id/date"
-                app:layout_constraintTop_toTopOf="parent"
-                android:entries="@array/protein_array"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/morningCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -35,15 +44,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/betweenFirstProtein"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/morningCarbohydrate"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="サラダチキン" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/betweenFirstCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,15 +61,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/lunchProtein"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/betweenFirstCarbohydrate"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="サラダチキン" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/lunchCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,15 +78,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/betweenSecondProtein"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/lunchCarbohydrate"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="サラダチキン" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/betweenSecondCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -83,15 +95,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/dinnerProtein"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/betweenSecondCarbohydrate"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="サラダチキン" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/dinnerCarbohydrate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,10 +112,11 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="ごはん" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/bedProtein"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/dinnerCarbohydrate"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="サラダチキン" />
