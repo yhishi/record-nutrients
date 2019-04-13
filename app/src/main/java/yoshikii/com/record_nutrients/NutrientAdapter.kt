@@ -1,22 +1,23 @@
 package yoshikii.com.record_nutrients
 
 import android.content.Context
+import android.databinding.ObservableArrayList
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import yoshikii.com.record_nutrients.data.Nutrient
 import yoshikii.com.record_nutrients.databinding.ViewItemListBinding
 
-class NutrientAdapter(private var context: Context) : ListAdapter<Any, BindingViewHolder<*>>(
+class NutrientAdapter(
+    private var context: Context
+
+) : ListAdapter<Any, BindingViewHolder<*>>(
     object : DiffUtil.ItemCallback<Any>() {
         override fun areItemsTheSame(oldItem: Any, newItem: Any) = oldItem == newItem
         override fun areContentsTheSame(oldItem: Any, newItem: Any) = oldItem == newItem
     }
 ) {
-    init {
-        setResponseData()
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder<*> {
         return when (viewType) {
             R.layout.view_item_list -> {
@@ -32,7 +33,7 @@ class NutrientAdapter(private var context: Context) : ListAdapter<Any, BindingVi
         val item = getItem(position)
         when {
             holder is ItemViewHolder && item is TestData -> {
-                holder.bind()
+                holder.bind(item)
             }
         }
     }
@@ -45,47 +46,42 @@ class NutrientAdapter(private var context: Context) : ListAdapter<Any, BindingVi
     }
 
     /** RecyclerViewの更新 */
-    fun setResponseData() {
-        submitList(prepareData())
+    fun updateData(spinnerItems: ObservableArrayList<Nutrient>) {
+        submitList(prepareData(spinnerItems))
     }
 
     /** レスポンスデータの整形 */
-    private fun prepareData(): MutableList<Any> {
+    private fun prepareData(spinnerItems: ObservableArrayList<Nutrient>): MutableList<Any> {
         val list = mutableListOf<Any>()
-
-        list.add(TestData())
+        list.add(TestData(spinnerItems))
         return list
     }
 
     private inner class ItemViewHolder(parent: ViewGroup) :
         BindingViewHolder<ViewItemListBinding>(parent, R.layout.view_item_list) {
-        fun bind() {
-            val a = arrayListOf("サラダ 20g", "ステーキ 40g")
+        fun bind(data: TestData) {
+
+            // タンパク質用のスピナーリスト作成
+            val proteinSpinner = arrayListOf<String>()
+            data.spinnerItems.forEach { spinner ->
+                spinner.proteinSpinner.forEach {
+                    proteinSpinner.add("${it.item} ${it.value} g" )
+                }
+            }
+
             val adapter = ArrayAdapter(
                 context,
                 android.R.layout.simple_spinner_item,
-                a
+                proteinSpinner
             )
             binding.morningProtein.adapter = adapter
-// dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-// spinner2.setAdapter(dataAdapter)
         }
     }
 
 
-    private class TestData
-
-    /** 栄養素見出しヘッダ */
-    private data class HeaderData(
-        /** 年月 */
-        val yearMonth: String
+    private class TestData(
+        val spinnerItems: ObservableArrayList<Nutrient>
     )
-
-//    /** 年月ヘッダ */
-//    private data class MonthHeaderData(
-//            /** 年月 */
-//            val  yearMonth: String
-//    )
 
     /** 栄養素データ部 */
     private data class ItemData(

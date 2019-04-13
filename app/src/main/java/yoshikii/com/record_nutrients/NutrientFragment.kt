@@ -17,11 +17,11 @@ import java.util.*
 
 class NutrientFragment : Fragment() {
 
-//    private var binding: FragmentNutrientBinding? = null
-    private var adapter: NutrientAdapter? = null
+    //    private var binding: FragmentNutrientBinding? = null
     private val nutrientViewModel by lazy {
         ViewModelProviders.of(this).get(NutrientViewModel::class.java)
     }
+    private val nutrientAdapter by lazy { NutrientAdapter(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +64,7 @@ class NutrientFragment : Fragment() {
 //        val a = all[0]?.id
 //        val b = all[0]!!.proteinSpinner[0]!!.item
 //        val c = all[0]!!.proteinSpinner[0]!!.value
-        all.forEach { it ->
+        all.forEach {
             it.proteinSpinner.forEach {
                 println(it.item)
                 println(it.value)
@@ -80,9 +80,11 @@ class NutrientFragment : Fragment() {
         val binding: FragmentNutrientBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
         binding.apply {
-            viewModel = nutrientViewModel
-            adapter = NutrientAdapter(requireContext())
-            //isLoading = true
+            nutrientViewModel.apply {
+                getRealm()
+                recyclerView.adapter = nutrientAdapter
+                nutrientAdapter.updateData(spinnerItems)
+            }
             return root
         }
     }
