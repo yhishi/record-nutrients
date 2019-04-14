@@ -34,7 +34,7 @@
 
             <Spinner
                 android:id="@+id/morningProtein"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{proteinAdapter}"
                 android:entries="@array/protein_array"
@@ -43,7 +43,7 @@
 
             <Spinner
                 android:id="@+id/morningCarbohydrate"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/morningProtein"
@@ -52,7 +52,7 @@
 
             <Spinner
                 android:id="@+id/betweenFirstProtein"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/morningCarbohydrate"
@@ -61,7 +61,7 @@
 
             <Spinner
                 android:id="@+id/betweenFirstCarbohydrate"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/betweenFirstProtein"
@@ -70,7 +70,7 @@
 
             <Spinner
                 android:id="@+id/lunchProtein"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/betweenFirstCarbohydrate"
@@ -79,7 +79,7 @@
 
             <Spinner
                 android:id="@+id/lunchCarbohydrate"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/lunchProtein"
@@ -88,7 +88,7 @@
 
             <Spinner
                 android:id="@+id/betweenSecondProtein"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/lunchCarbohydrate"
@@ -97,7 +97,7 @@
 
             <Spinner
                 android:id="@+id/betweenSecondCarbohydrate"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:adapter="@{carbohydrateAdapter}"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/betweenSecondProtein"
@@ -106,7 +106,7 @@
 
             <Spinner
                 android:id="@+id/dinnerProtein"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/betweenSecondCarbohydrate"
@@ -115,7 +115,7 @@
 
             <Spinner
                 android:id="@+id/dinnerCarbohydrate"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{carbohydrateAdapter}"
                 app:layout_constraintStart_toEndOf="@id/dinnerProtein"
@@ -124,7 +124,7 @@
 
             <Spinner
                 android:id="@+id/bedProtein"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:adapter="@{proteinAdapter}"
                 app:layout_constraintStart_toEndOf="@id/dinnerCarbohydrate"
