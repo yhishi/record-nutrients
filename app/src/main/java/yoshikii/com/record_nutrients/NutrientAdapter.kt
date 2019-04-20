@@ -54,6 +54,7 @@ class NutrientAdapter(
     private fun prepareData(spinnerItems: ObservableArrayList<Nutrient>): MutableList<Any> {
         val list = mutableListOf<Any>()
         list.add(TestData(spinnerItems))
+        list.add(TestData(spinnerItems))
         return list
     }
 
