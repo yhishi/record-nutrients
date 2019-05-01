@@ -1,8 +1,9 @@
-package yoshikii.com.record_nutrients
+package yoshikii.com.record_nutrients.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import yoshikii.com.record_nutrients.NutrientFragment.Companion.TAG_NUTRIENT_LIST_FRAGMENT
+import android.support.v7.app.AppCompatActivity
+import yoshikii.com.record_nutrients.R
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,12 +12,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            //プロジェクト一覧のFragment
-            val fragment = NutrientFragment()
-
             supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, fragment, TAG_NUTRIENT_LIST_FRAGMENT)
+                    .add(R.id.fragment_container, NutrientFragment(), NutrientFragment.TAG_NUTRIENT_LIST_FRAGMENT)
                     .commit()
         }
     }

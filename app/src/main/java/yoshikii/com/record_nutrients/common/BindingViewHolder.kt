@@ -1,4 +1,4 @@
-package yoshikii.com.record_nutrients
+package yoshikii.com.record_nutrients.common
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
