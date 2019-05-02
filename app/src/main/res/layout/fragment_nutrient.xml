@@ -2,13 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="yoshikii.com.record_nutrients.viewModel.NutrientViewModel" />
-    </data>
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,8 +15,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:viewModels="@{viewModel.dayMealData}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/add_button"

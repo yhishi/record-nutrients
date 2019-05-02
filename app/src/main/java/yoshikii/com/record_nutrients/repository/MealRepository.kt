@@ -6,7 +6,7 @@ import yoshikii.com.record_nutrients.repository.model.MeaLRealm
 import yoshikii.com.record_nutrients.repository.model.Meal
 import java.util.*
 
-class MealRepository {
+object MealRepository {
 
     fun getDayMeal(date: Date): ObservableArrayList<Meal> {
         val data = ObservableArrayList<Meal>()
@@ -17,15 +17,7 @@ class MealRepository {
                 data.add(meal)
             }
         }
-        //data.postValue(response.body())
         return data
-    }
-
-    companion object Factory {
-        val instance: MealRepository
-            @Synchronized get() {
-                return MealRepository()
-            }
     }
 }
 

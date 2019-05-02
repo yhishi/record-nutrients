@@ -21,6 +21,7 @@ import java.util.*
 class NutrientFragment : Fragment() {
 
     private lateinit var binding: FragmentNutrientBinding
+    private lateinit var adapter: NutrientAdapter
     private val nutrientViewModel by lazy {
         ViewModelProviders.of(this).get(NutrientViewModel::class.java)
     }
@@ -30,6 +31,29 @@ class NutrientFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        addTestData()
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
+        binding.apply {
+            // NutrientViewModelのデータにセット
+            nutrientViewModel.setMealData()
+            adapter = NutrientAdapter(nutrientViewModel.dayMealData)
+            recyclerView.adapter = adapter
+
+            addButton.clicks {
+                addTestData()
+
+                // NutrientViewModelのデータにセット
+                nutrientViewModel.setMealData()
+
+                // 更新
+                adapter.updateData(nutrientViewModel.dayMealData)
+            }
+            return root
+        }
+    }
+
+    private fun addTestData() {
         val realm = Realm.getDefaultInstance()
 
         // TODO 実装確認用にデータセット 後ほど削除
@@ -52,15 +76,6 @@ class NutrientFragment : Fragment() {
 
         realm.executeTransaction {
             it.insertOrUpdate(ccc)
-        }
-
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
-        binding.apply {
-            viewModel = nutrientViewModel
-            addButton.clicks {
-
-            }
-            return root
         }
     }
 

@@ -11,10 +11,10 @@ import yoshikii.com.record_nutrients.repository.model.Meal
 
 class NutrientAdapter(
     data: ObservableArrayList<Meal>
-) : ListAdapter<Any, BindingViewHolder<*>>(
-    object : DiffUtil.ItemCallback<Any>() {
-        override fun areItemsTheSame(oldItem: Any, newItem: Any) = oldItem == newItem
-        override fun areContentsTheSame(oldItem: Any, newItem: Any) = oldItem == newItem
+) : ListAdapter<Meal, BindingViewHolder<*>>(
+    object : DiffUtil.ItemCallback<Meal>() {
+        override fun areItemsTheSame(oldItem: Meal, newItem: Meal) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: Meal, newItem: Meal) = oldItem == newItem
     }
 ) {
     init {
@@ -57,9 +57,7 @@ class NutrientAdapter(
         BindingViewHolder<ViewItemListBinding>(parent, R.layout.view_item_list) {
         fun bind(data: Meal) {
             binding.apply {
-                date.text = data.time
-                item.text = data.item
-                calorie.text = data.calorie.toString()
+                mealData = data
             }
         }
     }
