@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import io.realm.Realm
 import io.realm.RealmList
 import yoshikii.com.record_nutrients.R
+import yoshikii.com.record_nutrients.common.clicks
 import yoshikii.com.record_nutrients.databinding.FragmentNutrientBinding
 import yoshikii.com.record_nutrients.repository.model.MeaLRealm
 import yoshikii.com.record_nutrients.repository.model.Meal
@@ -56,6 +57,9 @@ class NutrientFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
         binding.apply {
             viewModel = nutrientViewModel
+            addButton.clicks {
+
+            }
             return root
         }
     }
