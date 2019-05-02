@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import yoshikii.com.record_nutrients.R
 import yoshikii.com.record_nutrients.common.clicks
 import yoshikii.com.record_nutrients.databinding.FragmentNutrientBinding
 import yoshikii.com.record_nutrients.repository.model.Meal
@@ -25,7 +24,12 @@ class NutrientFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_nutrient, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            yoshikii.com.record_nutrients.R.layout.fragment_nutrient,
+            container,
+            false
+        )
         binding.apply {
             // NutrientViewModelのデータにセット
             nutrientViewModel.setMealData()
@@ -33,6 +37,7 @@ class NutrientFragment : Fragment() {
             recyclerView.adapter = adapter
 
             addButton.clicks {
+                progressBar.visibility = View.VISIBLE
                 nutrientViewModel.updateMealData(
                     Meal(
                         time = "9:00",
@@ -43,6 +48,7 @@ class NutrientFragment : Fragment() {
                 )
                 // 更新
                 adapter.updateData(nutrientViewModel.dayMealData)
+                progressBar.visibility = View.INVISIBLE
             }
             return root
         }
