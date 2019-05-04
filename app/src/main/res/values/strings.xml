@@ -6,6 +6,7 @@
     <string name="add_meal_calorie_label">カロリー(kcal)</string>
     <string name="add_meal_memo_label">メモ</string>
     <string name="add_meal_error_message">品名と量とカロリーは入力必須です。</string>
+    <string name="add_meal_finish_message">追加しました。</string>
 
     <string-array name="protein_array">
         <item>なし</item>

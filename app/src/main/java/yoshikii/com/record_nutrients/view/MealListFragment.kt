@@ -98,7 +98,7 @@ class MealListFragment : Fragment() {
                             toastMessage.setTextColor(resources.getColor(R.color.colorAccent))
                             toast.show()
                         } else {
-                            val (hour,minute) =
+                            val (hour, minute) =
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                                     timePicker.hour to String.format("%02d", timePicker.minute)
                                 } else {
@@ -116,6 +116,11 @@ class MealListFragment : Fragment() {
                                 )
                             )
                             dialog.dismiss()
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.add_meal_finish_message),
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
                     }
                 }
