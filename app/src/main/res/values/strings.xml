@@ -2,9 +2,10 @@
     <string name="app_name">record-nutrients</string>
     <string name="loading_projects">Loading projects …</string>
     <string name="add_meal_item_label">品名</string>
-    <string name="add_meal_item_amount">食べた量(g)</string>
-    <string name="add_meal_item_calorie">カロリー(kcal)</string>
-    <string name="add_meal_item_memo">メモ</string>
+    <string name="add_meal_amount_label">食べた量(g)</string>
+    <string name="add_meal_calorie_label">カロリー(kcal)</string>
+    <string name="add_meal_memo_label">メモ</string>
+    <string name="add_meal_error_message">品名と量とカロリーは入力必須です。</string>
 
     <string-array name="protein_array">
         <item>なし</item>

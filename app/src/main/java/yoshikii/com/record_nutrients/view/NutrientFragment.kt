@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import yoshikii.com.record_nutrients.R
 import yoshikii.com.record_nutrients.common.clicks
@@ -90,7 +91,14 @@ class NutrientFragment : Fragment() {
                             amount.text.toString().isEmpty() ||
                             calorie.text.toString().isEmpty()
                         ) {
-                            Toast.makeText(context, "品名と量とカロリーは入力必須です。", Toast.LENGTH_LONG).show()
+                            val toast = Toast.makeText(
+                                requireContext(), getString(R.string.add_meal_error_message),
+                                Toast.LENGTH_LONG
+                            )
+
+                            val toastMessage = toast.view.findViewById<View>(android.R.id.message) as TextView
+                            toastMessage.setTextColor(getResources().getColor(R.color.colorAccent))
+                            toast.show()
                         } else {
                             dialog.dismiss()
                         }

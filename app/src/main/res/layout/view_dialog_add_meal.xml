@@ -51,7 +51,7 @@
                 android:id="@+id/amount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/add_meal_item_amount"
+                android:hint="@string/add_meal_amount_label"
                 android:inputType="number"
                 android:maxLength="10"
                 android:singleLine="true" />
@@ -71,7 +71,7 @@
                 android:id="@+id/calorie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/add_meal_item_calorie"
+                android:hint="@string/add_meal_calorie_label"
                 android:inputType="number"
                 android:maxLength="10"
                 android:singleLine="true" />
@@ -92,7 +92,7 @@
                 android:id="@+id/memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/add_meal_item_memo"
+                android:hint="@string/add_meal_memo_label"
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:maxLength="100" />
