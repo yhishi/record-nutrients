@@ -5,15 +5,15 @@ import io.realm.Realm
 import io.realm.RealmList
 import yoshikii.com.record_nutrients.repository.model.MeaLRealm
 import yoshikii.com.record_nutrients.repository.model.Meal
-import java.text.SimpleDateFormat
-import java.util.*
 
 object MealRepository {
 
     fun getDayMeal(date: String): ObservableArrayList<Meal> {
         val data = ObservableArrayList<Meal>()
         val realm = Realm.getDefaultInstance()
-        val allData = realm.where(MeaLRealm::class.java).findAll()
+        val allData = realm.where(MeaLRealm::class.java)
+            .equalTo("date", date)
+            .findAll()
         allData.forEach {
             it.mealList.forEach { meal ->
                 data.add(meal)

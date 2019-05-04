@@ -47,7 +47,7 @@ class NutrientFragment : Fragment() {
         binding.apply {
             // NutrientViewModelのデータにセット
             // TODO カレンダーから取得した日付をセットする
-            nutrientViewModel.setMealData("2019/5/3")
+            nutrientViewModel.setMealData("2019/5/4")
             adapter = NutrientAdapter(nutrientViewModel.date, nutrientViewModel.dayMealData)
             recyclerView.adapter = adapter
 
