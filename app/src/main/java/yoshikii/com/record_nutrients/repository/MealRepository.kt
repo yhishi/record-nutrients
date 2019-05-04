@@ -10,7 +10,7 @@ import java.util.*
 
 object MealRepository {
 
-    fun getDayMeal(date: Date): ObservableArrayList<Meal> {
+    fun getDayMeal(date: String): ObservableArrayList<Meal> {
         val data = ObservableArrayList<Meal>()
         val realm = Realm.getDefaultInstance()
         val allData = realm.where(MeaLRealm::class.java).findAll()
@@ -22,7 +22,7 @@ object MealRepository {
         return data
     }
 
-    fun updateDayMeal(data: Meal) {
+    fun updateDayMeal(date: String, data: Meal) {
         val realm = Realm.getDefaultInstance()
         val meal: RealmList<Meal> = RealmList()
         meal.add(
@@ -34,9 +34,9 @@ object MealRepository {
                 memo = data.memo
             )
         )
-        val today = SimpleDateFormat("MM/dd", Locale.JAPAN).format(Date())
+        //val today = SimpleDateFormat("MM/dd", Locale.JAPAN).format(Date())
         val ccc = MeaLRealm(
-            date = today,
+            date = date,
             mealList = meal
         )
 
