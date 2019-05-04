@@ -10,7 +10,7 @@ import yoshikii.com.record_nutrients.databinding.ViewItemHeaderBinding
 import yoshikii.com.record_nutrients.databinding.ViewItemListBinding
 import yoshikii.com.record_nutrients.repository.model.Meal
 
-class NutrientAdapter(
+class MealListAdapter(
     private val mealDate: String,
     data: ObservableArrayList<Meal>
 ) : ListAdapter<Any, BindingViewHolder<*>>(

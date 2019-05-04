@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, NutrientFragment(), NutrientFragment.TAG_NUTRIENT_LIST_FRAGMENT)
+                    .add(R.id.fragment_container, MealListFragment(), MealListFragment.TAG_MEAL_LIST_FRAGMENT)
                     .commit()
         }
     }

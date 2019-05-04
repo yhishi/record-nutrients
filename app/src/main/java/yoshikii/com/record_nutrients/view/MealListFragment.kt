@@ -21,10 +21,10 @@ import yoshikii.com.record_nutrients.viewModel.NutrientViewModel
 
 
 @Suppress("DEPRECATION")
-class NutrientFragment : Fragment() {
+class MealListFragment : Fragment() {
 
     private lateinit var binding: FragmentNutrientBinding
-    private lateinit var adapter: NutrientAdapter
+    private lateinit var adapter: MealListAdapter
     private val nutrientViewModel by lazy {
         ViewModelProviders.of(this).get(NutrientViewModel::class.java)
     }
@@ -48,7 +48,7 @@ class NutrientFragment : Fragment() {
             // NutrientViewModelのデータにセット
             // TODO カレンダーから取得した日付をセットする
             nutrientViewModel.setMealData("2019/5/4")
-            adapter = NutrientAdapter(nutrientViewModel.date, nutrientViewModel.dayMealData)
+            adapter = MealListAdapter(nutrientViewModel.date, nutrientViewModel.dayMealData)
             recyclerView.adapter = adapter
 
             addButton.clicks {
@@ -134,6 +134,6 @@ class NutrientFragment : Fragment() {
     }
 
     companion object {
-        const val TAG_NUTRIENT_LIST_FRAGMENT = "NutrientListFragment"
+        const val TAG_MEAL_LIST_FRAGMENT = "MealListFragment"
     }
 }
