@@ -39,6 +39,11 @@ class NutrientFragment : Fragment() {
             container,
             false
         )
+        initView()
+        return binding.root
+    }
+
+    private fun initView() {
         binding.apply {
             // NutrientViewModelのデータにセット
             nutrientViewModel.setMealData()
@@ -46,19 +51,7 @@ class NutrientFragment : Fragment() {
             recyclerView.adapter = adapter
 
             addButton.clicks {
-                progressBar.visibility = View.VISIBLE
-                nutrientViewModel.updateMealData(
-                    Meal(
-                        time = "9:00",
-                        item = "ステーキ",
-                        amount = 200,
-                        calorie = 500
-                    )
-                )
-                // 更新
-                adapter.updateData(nutrientViewModel.dayMealData)
-                progressBar.visibility = View.INVISIBLE
-
+                // データ追加用のダイアログ表示
                 val builder = AlertDialog.Builder(requireActivity())
                 val dialogBinding = DataBindingUtil.inflate<ViewDialogAddMealBinding>(
                     LayoutInflater.from(requireActivity()),
@@ -66,6 +59,8 @@ class NutrientFragment : Fragment() {
                     null,
                     false
                 )
+
+                // 時刻入力用のスピナー設定
                 dialogBinding.timePicker.apply {
                     setIs24HourView(true)
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -87,25 +82,53 @@ class NutrientFragment : Fragment() {
 
                 addButton.clicks {
                     dialogBinding.apply {
+                        // 必須項目に入力がない時
                         if (item.text.toString().isEmpty() ||
                             amount.text.toString().isEmpty() ||
                             calorie.text.toString().isEmpty()
                         ) {
+                            // エラートースト表示
                             val toast = Toast.makeText(
                                 requireContext(), getString(R.string.add_meal_error_message),
                                 Toast.LENGTH_LONG
                             )
 
                             val toastMessage = toast.view.findViewById<View>(android.R.id.message) as TextView
-                            toastMessage.setTextColor(getResources().getColor(R.color.colorAccent))
+                            toastMessage.setTextColor(resources.getColor(R.color.colorAccent))
                             toast.show()
                         } else {
+                            val (hour,minute) =
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    timePicker.hour to String.format("%02d", timePicker.minute)
+                                } else {
+                                    timePicker.currentHour to String.format("%02d", timePicker.currentMinute)
+                                }
+
+                            // データ追加
+                            addData(
+                                Meal(
+                                    time = "$hour:$minute",
+                                    item = item.text.toString(),
+                                    amount = amount.text.toString().toInt(),
+                                    calorie = calorie.text.toString().toInt(),
+                                    memo = memo.text.toString()
+                                )
+                            )
                             dialog.dismiss()
                         }
                     }
                 }
             }
-            return root
+        }
+    }
+
+    private fun addData(meal: Meal) {
+        binding.apply {
+            progressBar.visibility = View.VISIBLE
+            nutrientViewModel.updateMealData(meal)
+            // 更新
+            adapter.updateData(nutrientViewModel.dayMealData)
+            progressBar.visibility = View.INVISIBLE
         }
     }
 
