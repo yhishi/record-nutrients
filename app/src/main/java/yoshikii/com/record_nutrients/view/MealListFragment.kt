@@ -139,7 +139,7 @@ class MealListFragment : Fragment() {
     }
 
     companion object {
-        const val TAG_MEAL_LIST_FRAGMENT = "MealListFragment"
+        const val TAG = "MealListFragment"
         private const val KEY_DATE = "date"
         fun newInstance(name: String): MealListFragment {
             return MealListFragment().apply {

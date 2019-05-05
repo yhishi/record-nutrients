@@ -48,6 +48,6 @@ class CalendarFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     companion object {
         fun newInstance(): CalendarFragment = CalendarFragment()
-        const val TAG_CALENDAR_FRAGMENT = "CalendarFragment"
+        const val TAG = "CalendarFragment"
     }
 }

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
             /** [CalendarFragment]表示 */
             CalendarFragment
                 .newInstance()
-                .show(supportFragmentManager, CalendarFragment.TAG_CALENDAR_FRAGMENT)
+                .show(supportFragmentManager, CalendarFragment.TAG)
         }
     }
 
@@ -23,11 +23,31 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
     override fun onSelected(year: Int, month: Int, day: Int) {
         supportFragmentManager
             .beginTransaction()
-            .add(
+            .replace(
                 R.id.fragment_container,
                 MealListFragment.newInstance("$year/$month/$day"),
-                MealListFragment.TAG_MEAL_LIST_FRAGMENT
+                MealListFragment.TAG
             )
             .commit()
+    }
+
+    override fun onBackPressed() {
+        when (supportFragmentManager.fragments.last().tag) {
+            MealListFragment.TAG -> {
+                /** [MealListFragment]削除*/
+                supportFragmentManager
+                    .beginTransaction()
+                    .remove(supportFragmentManager.fragments.last())
+                    .commit()
+
+                /** 再度[CalendarFragment]表示 */
+                CalendarFragment
+                    .newInstance()
+                    .show(supportFragmentManager, CalendarFragment.TAG)
+            }
+            else -> {
+                finish()
+            }
+        }
     }
 }
