@@ -38,6 +38,9 @@ class CalendarFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
             )
         // キャンセルボタンなし
         dialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "") { _, _ -> }
+
+        // キャンセル不可
+        dialog.setCanceledOnTouchOutside(false)
         return dialog
     }
 
