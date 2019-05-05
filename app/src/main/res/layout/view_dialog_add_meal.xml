@@ -68,7 +68,7 @@
             app:layout_constraintTop_toBottomOf="@id/text_input_amount">
 
             <android.support.design.widget.TextInputEditText
-                android:id="@+id/calorie"
+                android:id="@+id/nutrient"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/add_meal_calorie_label"

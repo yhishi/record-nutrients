@@ -30,7 +30,7 @@ object MealRepository {
                 time = data.time,
                 item = data.item,
                 amount = data.amount,
-                calorie = data.calorie,
+                nutrient = data.nutrient,
                 memo = data.memo
             )
         )

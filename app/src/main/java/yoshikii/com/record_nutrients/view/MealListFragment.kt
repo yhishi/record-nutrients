@@ -86,7 +86,7 @@ class MealListFragment : Fragment() {
                         // 必須項目に入力がない時
                         if (item.text.toString().isEmpty() ||
                             amount.text.toString().isEmpty() ||
-                            calorie.text.toString().isEmpty()
+                            nutrient.text.toString().isEmpty()
                         ) {
                             // エラートースト表示
                             val toast = Toast.makeText(
@@ -111,7 +111,7 @@ class MealListFragment : Fragment() {
                                     time = "$hour:$minute",
                                     item = item.text.toString(),
                                     amount = amount.text.toString().toInt(),
-                                    calorie = calorie.text.toString().toInt(),
+                                    nutrient = nutrient.text.toString().toInt(),
                                     memo = memo.text.toString()
                                 )
                             )

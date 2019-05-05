@@ -31,23 +31,23 @@
             android:layout_height="wrap_content"
             android:textColor="@color/common_black"
             android:textSize="20sp"
-            android:text="@{mealData.item}"
+            android:text='@{mealData.item + " " + mealData.amount + "g"}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/date"
             tools:text="ステーキ200g" />
 
         <TextView
-            android:id="@+id/calorie"
+            android:id="@+id/nutrient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/common_black"
             android:textSize="14sp"
-            android:text="@{String.valueOf(mealData.calorie)}"
+            android:text='@{String.valueOf(mealData.nutrient) + "g"}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item"
-            tools:text="300kcal" />
+            tools:text="300g" />
 
         <View
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:background="@color/common_light_gray"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/calorie" />
+            app:layout_constraintTop_toBottomOf="@id/nutrient" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

@@ -18,8 +18,8 @@ open class Meal(
     var item: String = "",
     /** 量 */
     var amount: Int = 0,
-    /** カロリー */
-    var calorie: Int? = null,
+    /** 栄養素 */
+    var nutrient: Int? = null,
     /** メモ */
     var memo: String? = null
 ) : RealmObject()
