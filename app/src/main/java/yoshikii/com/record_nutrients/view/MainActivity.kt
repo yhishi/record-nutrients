@@ -2,6 +2,7 @@ package yoshikii.com.record_nutrients.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import yoshikii.com.record_nutrients.R
 
 
@@ -10,6 +11,8 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         if (savedInstanceState == null) {
             /** [CalendarFragment]表示 */
@@ -31,10 +34,21 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
             .commit()
     }
 
-    /** 戻るボタンを押した時の処理 */
+    /** 端末の戻るボタン押した時 */
     override fun onBackPressed() {
-        when (supportFragmentManager.fragments.last().tag) {
-            MealListFragment.TAG -> {
+        onBack()
+    }
+
+    /** アクションバーの戻るボタン押した時 */
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        onBack()
+        return super.onOptionsItemSelected(item)
+    }
+
+    /** 戻るボタンを押した時の処理 */
+    private fun onBack() {
+        supportFragmentManager.fragments.apply {
+            if (isNotEmpty() && last().tag == MealListFragment.TAG) {
                 /** [MealListFragment]削除*/
                 supportFragmentManager
                     .beginTransaction()
@@ -45,8 +59,7 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
                 CalendarFragment
                     .newInstance()
                     .show(supportFragmentManager, CalendarFragment.TAG)
-            }
-            else -> {
+            } else {
                 finish()
             }
         }
