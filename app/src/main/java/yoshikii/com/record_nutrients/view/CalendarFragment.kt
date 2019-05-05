@@ -28,13 +28,17 @@ class CalendarFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val calendar = Calendar.getInstance()
 
-        return DatePickerDialog(
-            requireContext(),
-            this,
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
+        val dialog =
+            DatePickerDialog(
+                requireContext(),
+                this,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            )
+        // キャンセルボタンなし
+        dialog.setButton(DatePickerDialog.BUTTON_NEGATIVE, "") { _, _ -> }
+        return dialog
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
