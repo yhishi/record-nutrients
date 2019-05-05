@@ -28,6 +28,7 @@ class MealListFragment : Fragment() {
     private val nutrientViewModel by lazy {
         ViewModelProviders.of(this).get(NutrientViewModel::class.java)
     }
+    private val selectedDate by lazy { arguments?.getString(KEY_DATE) ?: throw IllegalArgumentException() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,8 +47,7 @@ class MealListFragment : Fragment() {
     private fun initView() {
         binding.apply {
             // NutrientViewModelのデータにセット
-            // TODO カレンダーから取得した日付をセットする
-            nutrientViewModel.setMealData("2019/5/4")
+            nutrientViewModel.setMealData(selectedDate)
             adapter = MealListAdapter(nutrientViewModel.date, nutrientViewModel.dayMealData)
             recyclerView.adapter = adapter
 
@@ -140,5 +140,13 @@ class MealListFragment : Fragment() {
 
     companion object {
         const val TAG_MEAL_LIST_FRAGMENT = "MealListFragment"
+        private const val KEY_DATE = "date"
+        fun newInstance(name: String): MealListFragment {
+            return MealListFragment().apply {
+                arguments = Bundle().apply {
+                    putString(KEY_DATE, name)
+                }
+            }
+        }
     }
 }

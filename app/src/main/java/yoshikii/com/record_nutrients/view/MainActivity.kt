@@ -23,7 +23,11 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
     override fun onSelected(year: Int, month: Int, day: Int) {
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container, MealListFragment(), MealListFragment.TAG_MEAL_LIST_FRAGMENT)
+            .add(
+                R.id.fragment_container,
+                MealListFragment.newInstance("$year/$month/$day"),
+                MealListFragment.TAG_MEAL_LIST_FRAGMENT
+            )
             .commit()
     }
 }
