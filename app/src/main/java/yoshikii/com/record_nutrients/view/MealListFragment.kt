@@ -17,7 +17,7 @@ import yoshikii.com.record_nutrients.common.clicks
 import yoshikii.com.record_nutrients.databinding.FragmentNutrientBinding
 import yoshikii.com.record_nutrients.databinding.ViewDialogAddMealBinding
 import yoshikii.com.record_nutrients.repository.model.Meal
-import yoshikii.com.record_nutrients.viewModel.NutrientViewModel
+import yoshikii.com.record_nutrients.viewModel.MealViewModel
 
 
 @Suppress("DEPRECATION")
@@ -26,7 +26,7 @@ class MealListFragment : Fragment() {
     private lateinit var binding: FragmentNutrientBinding
     private lateinit var adapter: MealListAdapter
     private val nutrientViewModel by lazy {
-        ViewModelProviders.of(this).get(NutrientViewModel::class.java)
+        ViewModelProviders.of(this).get(MealViewModel::class.java)
     }
     private val selectedDate by lazy { arguments?.getString(KEY_DATE) ?: throw IllegalArgumentException() }
 

@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
             .commit()
     }
 
+    /** 戻るボタンを押した時の処理 */
     override fun onBackPressed() {
         when (supportFragmentManager.fragments.last().tag) {
             MealListFragment.TAG -> {

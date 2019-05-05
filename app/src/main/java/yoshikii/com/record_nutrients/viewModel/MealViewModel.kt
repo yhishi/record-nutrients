@@ -6,7 +6,7 @@ import yoshikii.com.record_nutrients.repository.MealRepository
 import yoshikii.com.record_nutrients.repository.model.Meal
 
 
-class NutrientViewModel : ViewModel() {
+class MealViewModel : ViewModel() {
     var date: String = ""
     var dayMealData: ObservableArrayList<Meal> = ObservableArrayList()
 
