@@ -6,6 +6,7 @@ import android.support.v7.util.DiffUtil
 import android.view.ViewGroup
 import yoshikii.com.record_nutrients.R
 import yoshikii.com.record_nutrients.common.BindingViewHolder
+import yoshikii.com.record_nutrients.common.clicks
 import yoshikii.com.record_nutrients.databinding.ViewItemHeaderBinding
 import yoshikii.com.record_nutrients.databinding.ViewItemListBinding
 import yoshikii.com.record_nutrients.repository.model.Meal
@@ -79,6 +80,7 @@ class MealListAdapter(
         fun bind(data: Meal) {
             binding.apply {
                 mealData = data
+                root.clicks {  }
             }
         }
     }

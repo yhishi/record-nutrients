@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
 
     /** 端末の戻るボタン押した時 */
     override fun onBackPressed() {
+        // TODO カレンダー表示時の戻るボタン制御
         onBack()
     }
 

@@ -10,53 +10,59 @@
             type="yoshikii.com.record_nutrients.repository.model.Meal" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/common_ripple">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@{mealData.time}"
-            tools:text="10:00" />
-
-        <TextView
-            android:id="@+id/item"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/common_black"
-            android:textSize="20sp"
-            android:text='@{mealData.item + "(" + mealData.amount + "g)"}'
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/date"
-            tools:text="ステーキ200g" />
-
-        <TextView
-            android:id="@+id/nutrient"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/common_black"
-            android:textSize="14sp"
-            android:text='@{String.valueOf(mealData.nutrient) + "g"}'
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item"
-            tools:text="300g" />
-
-        <View
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/common_light_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nutrient" />
+            android:layout_height="wrap_content"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp">
 
-    </android.support.constraint.ConstraintLayout>
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{mealData.time}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10:00" />
+
+            <TextView
+                android:id="@+id/item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text='@{mealData.item + "(" + mealData.amount + "g)"}'
+                android:textColor="@color/common_black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                tools:text="ステーキ200g" />
+
+            <TextView
+                android:id="@+id/nutrient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text='@{String.valueOf(mealData.nutrient) + "g"}'
+                android:textColor="@color/common_black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item"
+                tools:text="300g" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/common_light_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nutrient" />
+
+        </android.support.constraint.ConstraintLayout>
+    </FrameLayout>
 </layout>
