@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
             .beginTransaction()
             .replace(
                 R.id.fragment_container,
-                MealListFragment.newInstance("$year/$month/$day"),
-                MealListFragment.TAG
+                TabFragment.newInstance("$year/$month/$day"),
+                TabFragment.TAG
             )
             .commit()
     }

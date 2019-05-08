@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">record-nutrients</string>
+    <string name="app_name">筋トレ 記録</string>
     <string name="loading_projects">Loading projects …</string>
     <string name="add_meal_item_label">品名</string>
     <string name="add_meal_amount_label">食べた量(g)</string>
@@ -8,18 +8,8 @@
     <string name="add_meal_error_message">品名と量とカロリーは入力必須です。</string>
     <string name="add_meal_finish_message">追加しました。</string>
 
-    <string-array name="protein_array">
-        <item>なし</item>
-        <item>サラダチキン 24g</item>
-        <item>プロテイン 23g</item>
-        <item>ステーキ 40g</item>
-        <item>さんま缶 18g</item>
-        <item>焼き鳥冷凍 29g</item>
-    </string-array>
-    <string-array name="carbohydrate_array">
-        <item>なし</item>
-        <item>ご飯 120g</item>
-        <item>ご飯大 140g</item>
-        <item>おにぎり 60g</item>
+    <string-array name="tab_array">
+        <item>食事</item>
+        <item>筋トレ</item>
     </string-array>
 </resources>
