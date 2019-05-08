@@ -1,16 +1,18 @@
 package yoshikii.com.record_nutrients.view
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import yoshikii.com.record_nutrients.R
+import yoshikii.com.record_nutrients.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
