@@ -13,6 +13,8 @@ open class MeaLRealm(
 
 open class Meal(
     /** 食べた時間 */
+    var id: Int = 0,
+    /** 食べた時間 */
     var time: String = "",
     /** 品名 */
     var item: String = "",

@@ -16,6 +16,7 @@ class MealViewModel : ViewModel() {
     }
 
     fun updateMealData(meal: Meal) {
+        meal.id = dayMealData.size + 1
         MealRepository.updateDayMeal(date, meal)
         setMealData(date)
     }
