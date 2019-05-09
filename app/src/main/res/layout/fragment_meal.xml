@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:src="@drawable/ic_add_floating_button_24dp"
-            app:rippleColor="@color/colorAccentDark"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/colorAccentLight" />
 
     </android.support.constraint.ConstraintLayout>
 

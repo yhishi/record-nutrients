@@ -14,7 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import yoshikii.com.record_nutrients.R
 import yoshikii.com.record_nutrients.common.clicks
-import yoshikii.com.record_nutrients.databinding.FragmentNutrientBinding
+import yoshikii.com.record_nutrients.databinding.FragmentMealBinding
 import yoshikii.com.record_nutrients.databinding.ViewDialogAddMealBinding
 import yoshikii.com.record_nutrients.repository.model.Meal
 import yoshikii.com.record_nutrients.viewModel.MealViewModel
@@ -23,7 +23,7 @@ import yoshikii.com.record_nutrients.viewModel.MealViewModel
 @Suppress("DEPRECATION")
 class MealListFragment : Fragment() {
 
-    private lateinit var binding: FragmentNutrientBinding
+    private lateinit var binding: FragmentMealBinding
     private lateinit var adapter: MealListAdapter
     private val nutrientViewModel by lazy {
         ViewModelProviders.of(this).get(MealViewModel::class.java)
@@ -36,7 +36,7 @@ class MealListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_nutrient,
+            R.layout.fragment_meal,
             container,
             false
         )
@@ -142,7 +142,6 @@ class MealListFragment : Fragment() {
     }
 
     companion object {
-        const val TAG = "MealListFragment"
         private const val KEY_DATE = "date"
         fun newInstance(name: String): MealListFragment {
             return MealListFragment().apply {
