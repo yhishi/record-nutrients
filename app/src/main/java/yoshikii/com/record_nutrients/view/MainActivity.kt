@@ -53,19 +53,21 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
     /** 戻るボタンを押した時の処理 */
     private fun onBack() {
         supportFragmentManager.fragments.apply {
-            if (isNotEmpty() && last().tag == MealListFragment.TAG) {
-                /** [MealListFragment]削除 */
-                supportFragmentManager
-                    .beginTransaction()
-                    .remove(supportFragmentManager.fragments.last())
-                    .commit()
+            if (isEmpty() || last().tag == CalendarFragment.TAG) {
+                finish()
+            } else {
+                /** fragmentをすべて削除 */
+                this.forEach {
+                    supportFragmentManager
+                        .beginTransaction()
+                        .remove(it)
+                        .commit()
+                }
 
                 /** 再度[CalendarFragment]表示 */
                 CalendarFragment
                     .newInstance()
                     .show(supportFragmentManager, CalendarFragment.TAG)
-            } else {
-                finish()
             }
         }
     }

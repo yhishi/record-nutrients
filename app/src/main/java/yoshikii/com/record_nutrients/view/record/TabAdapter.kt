@@ -17,7 +17,7 @@ class TabAdapter(
 
     private val tabTitles = resources.getStringArray(R.array.tab_array)
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): String? {
         return tabTitles[position]
     }
 
