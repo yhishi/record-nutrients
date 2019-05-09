@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListene
     private fun onBack() {
         supportFragmentManager.fragments.apply {
             if (isNotEmpty() && last().tag == MealListFragment.TAG) {
-                /** [MealListFragment]削除*/
+                /** [MealListFragment]削除 */
                 supportFragmentManager
                     .beginTransaction()
                     .remove(supportFragmentManager.fragments.last())

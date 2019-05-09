@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">筋トレ 記録</string>
+    <string name="app_name">記録一覧</string>
     <string name="loading_projects">Loading projects …</string>
     <string name="add_meal_item_label">品名</string>
     <string name="add_meal_amount_label">食べた量(g)</string>

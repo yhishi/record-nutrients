@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="yoshikii.com.record_nutrients">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="yoshikii.com.record_nutrients"
+    tools:ignore="GoogleAppIndexingWarning">
 
     <application
         android:name=".MyApplication"
