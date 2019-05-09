@@ -1,4 +1,4 @@
-package yoshikii.com.record_nutrients.view
+package yoshikii.com.record_nutrients.view.record.muscle
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle

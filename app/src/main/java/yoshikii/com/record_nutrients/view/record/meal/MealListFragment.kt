@@ -1,4 +1,4 @@
-package yoshikii.com.record_nutrients.view
+package yoshikii.com.record_nutrients.view.record.meal
 
 import android.app.AlertDialog
 import android.arch.lifecycle.ViewModelProviders
@@ -48,7 +48,10 @@ class MealListFragment : Fragment() {
         binding.apply {
             // NutrientViewModelのデータにセット
             nutrientViewModel.setMealData(selectedDate)
-            adapter = MealListAdapter(nutrientViewModel.date, nutrientViewModel.dayMealData)
+            adapter = MealListAdapter(
+                nutrientViewModel.date,
+                nutrientViewModel.dayMealData
+            )
             recyclerView.adapter = adapter
 
             addButton.clicks {

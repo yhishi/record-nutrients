@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import yoshikii.com.record_nutrients.R
 import yoshikii.com.record_nutrients.databinding.ActivityMainBinding
+import yoshikii.com.record_nutrients.view.record.meal.MealListFragment
+import yoshikii.com.record_nutrients.view.record.TabFragment
 
 
 class MainActivity : AppCompatActivity(), CalendarFragment.OnDateSelectedListener {

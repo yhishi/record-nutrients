@@ -1,4 +1,4 @@
-package yoshikii.com.record_nutrients.view
+package yoshikii.com.record_nutrients.view.record.meal
 
 import android.databinding.ObservableArrayList
 import android.support.v7.recyclerview.extensions.ListAdapter
