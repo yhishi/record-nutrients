@@ -6,11 +6,11 @@ import io.realm.RealmList
 import yoshikii.com.record_nutrients.repository.model.MeaLRealm
 import yoshikii.com.record_nutrients.repository.model.Meal
 
-object MealRepository {
+class MealRepository {
+    private var realm: Realm = Realm.getDefaultInstance()
 
     fun getDayMeal(date: String): ObservableArrayList<Meal> {
         val data = ObservableArrayList<Meal>()
-        val realm = Realm.getDefaultInstance()
         val allData = realm.where(MeaLRealm::class.java)
             .equalTo("date", date)
             .findAll()
@@ -22,8 +22,7 @@ object MealRepository {
         return data
     }
 
-    fun updateDayMeal(date: String, data: Meal) {
-        val realm = Realm.getDefaultInstance()
+    fun addDayMeal(date: String, data: Meal) {
         val meal: RealmList<Meal> = RealmList()
         meal.add(
             Meal(
@@ -35,7 +34,6 @@ object MealRepository {
                 memo = data.memo
             )
         )
-        //val today = SimpleDateFormat("MM/dd", Locale.JAPAN).format(Date())
         val ccc = MeaLRealm(
             date = date,
             mealList = meal
@@ -45,5 +43,23 @@ object MealRepository {
             it.insertOrUpdate(ccc)
         }
     }
-}
 
+    fun editDayMeal(date: String, data: Meal) {
+        realm.executeTransaction {
+            val mealRealm = realm.where(MeaLRealm::class.java)
+                .equalTo("date", date)
+                .findAll()
+            mealRealm.forEach {
+                it.mealList.forEach { realm ->
+                    if (realm.id == data.id) {
+                        realm.time = data.time
+                        realm.item = data.item
+                        realm.amount = data.amount
+                        realm.nutrient = data.nutrient
+                        realm.memo = data.memo
+                    }
+                }
+            }
+        }
+    }
+}

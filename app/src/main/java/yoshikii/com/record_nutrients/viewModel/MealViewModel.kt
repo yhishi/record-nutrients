@@ -9,15 +9,21 @@ import yoshikii.com.record_nutrients.repository.model.Meal
 class MealViewModel : ViewModel() {
     var date: String = ""
     var dayMealData: ObservableArrayList<Meal> = ObservableArrayList()
+    private val mealRepository = MealRepository()
 
     fun setMealData(calendarDate: String) {
         date = calendarDate
-        dayMealData = MealRepository.getDayMeal(date)
+        dayMealData = mealRepository.getDayMeal(date)
     }
 
-    fun updateMealData(meal: Meal) {
+    fun addMealData(meal: Meal) {
         meal.id = dayMealData.size + 1
-        MealRepository.updateDayMeal(date, meal)
+        mealRepository.addDayMeal(date, meal)
+        setMealData(date)
+    }
+
+    fun editMealData(meal: Meal) {
+        mealRepository.editDayMeal(date, meal)
         setMealData(date)
     }
 }

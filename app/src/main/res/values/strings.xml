@@ -6,7 +6,8 @@
     <string name="add_meal_calorie_label">栄養素(g)</string>
     <string name="add_meal_memo_label">メモ</string>
     <string name="add_meal_error_message">品名と量とカロリーは入力必須です。</string>
-    <string name="add_meal_finish_message">追加しました。</string>
+    <string name="add_meal_message">追加しました</string>
+    <string name="edit_meal_message">更新しました</string>
 
     <string-array name="tab_array">
         <item>食事</item>

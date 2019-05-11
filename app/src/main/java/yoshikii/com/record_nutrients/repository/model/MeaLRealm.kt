@@ -21,7 +21,7 @@ open class Meal(
     /** 量 */
     var amount: Int = 0,
     /** 栄養素 */
-    var nutrient: Int? = null,
+    var nutrient: Int = 0,
     /** メモ */
-    var memo: String? = null
+    var memo: String = ""
 ) : RealmObject()

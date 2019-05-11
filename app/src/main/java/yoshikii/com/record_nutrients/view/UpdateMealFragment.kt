@@ -28,6 +28,12 @@ class UpdateMealFragment : DialogFragment() {
     }
 
     private lateinit var listener: OnUpdateListener
+    private val originalId by lazy { arguments?.getInt(KEY_ID) ?: 0 }
+    private val originalTime by lazy { arguments?.getString(KEY_TIME) ?: "" }
+    private val originalItem by lazy { arguments?.getString(KEY_ITEM) ?: "" }
+    private val originalAmount by lazy { arguments?.getInt(KEY_AMOUNT) ?: 0 }
+    private val originalNutrient by lazy { arguments?.getInt(KEY_NUTRIENT) ?: 0 }
+    private val originalMemo by lazy { arguments?.getString(KEY_MEMO) ?: "" }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -43,6 +49,38 @@ class UpdateMealFragment : DialogFragment() {
             null,
             false
         )
+
+        dialogBinding.apply {
+            // 食事リストの新規追加の場合
+            if (originalId == 0) {
+                timePicker.apply {
+                    setIs24HourView(true)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        hour = 12
+                        minute = 0
+                    } else {
+                        currentHour = 12
+                        currentMinute = 0
+                    }
+                }
+            } else {
+                // 食事リストの更新の場合、一覧に表示されている内容を一旦表示
+                timePicker.apply {
+                    setIs24HourView(true)
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        hour = originalTime.split(":")[0].toInt()
+                        minute = originalTime.split(":")[1].toInt()
+                    } else {
+                        currentHour = originalTime.split(":")[0].toInt()
+                        currentMinute = originalTime.split(":")[1].toInt()
+                    }
+                }
+                item.setText(originalItem)
+                amount.setText(originalAmount.toString())
+                nutrient.setText(originalNutrient.toString())
+                memo.setText(originalMemo)
+            }
+        }
 
         // 時刻入力用のスピナー設定
         dialogBinding.timePicker.apply {
@@ -91,6 +129,7 @@ class UpdateMealFragment : DialogFragment() {
                     // データ追加
                     listener.onUpdate(
                         Meal(
+                            id = originalId,
                             time = "$hour:$minute",
                             item = item.text.toString(),
                             amount = amount.text.toString().toInt(),
@@ -99,11 +138,6 @@ class UpdateMealFragment : DialogFragment() {
                         )
                     )
                     dialog.dismiss()
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.add_meal_finish_message),
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
             }
         }
@@ -111,7 +145,31 @@ class UpdateMealFragment : DialogFragment() {
     }
 
     companion object {
-        fun newInstance(): UpdateMealFragment = UpdateMealFragment()
+        private const val KEY_ID = "id"
+        private const val KEY_TIME = "originalTime"
+        private const val KEY_ITEM = "originalItem"
+        private const val KEY_AMOUNT = "originalAmount"
+        private const val KEY_NUTRIENT = "originalNutrient"
+        private const val KEY_MEMO = "originalMemo"
+        fun newInstance(
+            id: Int = 0,
+            time: String = "",
+            item: String = "",
+            amount: Int = 0,
+            nutrient: Int = 0,
+            memo: String = ""
+        ): UpdateMealFragment {
+            return UpdateMealFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(KEY_ID, id)
+                    putString(KEY_TIME, time)
+                    putString(KEY_ITEM, item)
+                    putInt(KEY_AMOUNT, amount)
+                    putInt(KEY_NUTRIENT, nutrient)
+                    putString(KEY_MEMO, memo)
+                }
+            }
+        }
         const val TAG = "UpdateMealFragment"
     }
 }

@@ -1,6 +1,8 @@
 package yoshikii.com.record_nutrients.view.record.meal
 
 import android.databinding.ObservableArrayList
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.view.ViewGroup
@@ -10,8 +12,11 @@ import yoshikii.com.record_nutrients.common.clicks
 import yoshikii.com.record_nutrients.databinding.ViewItemHeaderBinding
 import yoshikii.com.record_nutrients.databinding.ViewItemListBinding
 import yoshikii.com.record_nutrients.repository.model.Meal
+import yoshikii.com.record_nutrients.view.UpdateMealFragment
 
 class MealListAdapter(
+    private val fragment: Fragment,
+    private val fragmentManager: FragmentManager,
     private val mealDate: String,
     data: ObservableArrayList<Meal>
 ) : ListAdapter<Any, BindingViewHolder<*>>(
@@ -80,7 +85,19 @@ class MealListAdapter(
         fun bind(data: Meal) {
             binding.apply {
                 mealData = data
-                root.clicks {  }
+                root.clicks {
+                    val dialog = UpdateMealFragment.newInstance(
+                        id = data.id,
+                        time = data.time,
+                        item = data.item,
+                        amount = data.amount,
+                        nutrient = data.nutrient,
+                        memo = data.memo
+                    )
+                    /** [UpdateMealFragment]から戻すためにセット */
+                    dialog.setTargetFragment(fragment, 0)
+                    dialog.show(fragmentManager, UpdateMealFragment.TAG)
+                }
             }
         }
     }

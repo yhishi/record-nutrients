@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import yoshikii.com.record_nutrients.R
 import yoshikii.com.record_nutrients.common.clicks
 import yoshikii.com.record_nutrients.databinding.FragmentMealBinding
@@ -43,9 +44,19 @@ class MealListFragment : Fragment(), UpdateMealFragment.OnUpdateListener {
     override fun onUpdate(meal: Meal) {
         binding.apply {
             progressBar.visibility = View.VISIBLE
-            nutrientViewModel.updateMealData(meal)
-            // 更新
-            adapter.updateData(nutrientViewModel.dayMealData)
+
+            // データ追加
+            if (meal.id == 0) {
+                nutrientViewModel.addMealData(meal)
+                adapter.updateData(nutrientViewModel.dayMealData)
+                showComplete(getString(R.string.add_meal_message))
+            } else {
+                // データ更新
+                nutrientViewModel.editMealData(meal)
+                adapter.updateData(nutrientViewModel.dayMealData)
+                showComplete(getString(R.string.edit_meal_message))
+            }
+
             progressBar.visibility = View.INVISIBLE
         }
     }
@@ -55,6 +66,8 @@ class MealListFragment : Fragment(), UpdateMealFragment.OnUpdateListener {
             // NutrientViewModelのデータにセット
             nutrientViewModel.setMealData(selectedDate)
             adapter = MealListAdapter(
+                this@MealListFragment,
+                fragmentManager ?: throw IllegalArgumentException(),
                 nutrientViewModel.date,
                 nutrientViewModel.dayMealData
             )
@@ -68,6 +81,14 @@ class MealListFragment : Fragment(), UpdateMealFragment.OnUpdateListener {
                 dialog.show(fragmentManager, UpdateMealFragment.TAG)
             }
         }
+    }
+
+    private fun showComplete(message: String) {
+        Toast.makeText(
+            requireContext(),
+            message,
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     companion object {
