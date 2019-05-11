@@ -27,6 +27,7 @@ object MealRepository {
         val meal: RealmList<Meal> = RealmList()
         meal.add(
             Meal(
+                id = data.id,
                 time = data.time,
                 item = data.item,
                 amount = data.amount,
